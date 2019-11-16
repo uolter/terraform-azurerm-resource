@@ -48,3 +48,4 @@ variable "tags" {
 variable "type" {
   description = "Type of the resource. This value is a combination of the namespace of the resource provider and the resource type (such as Microsoft.Storage/storageAccounts)."
 }
+

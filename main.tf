@@ -3,9 +3,9 @@ provider "azurerm" {
 }
 
 resource "azurerm_template_deployment" "resource" {
-  name                = "${var.name}"
-  resource_group_name = "${var.resource_group_name}"
-  deployment_mode     = "${var.deployment_mode}"
+  name                = var.name
+  resource_group_name = var.resource_group_name
+  deployment_mode     = var.deployment_mode
 
   template_body = <<DEPLOY
 {
@@ -59,14 +59,16 @@ resource "azurerm_template_deployment" "resource" {
 }
 DEPLOY
 
-  parameters {
-    "apiVersion" = "${var.api_version}"
-    "kind"       = "${var.kind}"
-    "location"   = "${var.location}"
-    "name"       = "${var.name}"
-    "plan"       = "${jsonencode(var.plan)}"
-    "properties" = "${jsonencode(var.properties)}"
-    "sku"        = "${jsonencode(var.sku)}"
-    "tags"       = "${jsonencode(var.tags)}"
+
+  parameters = {
+    "apiVersion" = var.api_version
+    "kind"       = var.kind
+    "location"   = var.location
+    "name"       = var.name
+    "plan"       = jsonencode(var.plan)
+    "properties" = jsonencode(var.properties)
+    "sku"        = jsonencode(var.sku)
+    "tags"       = jsonencode(var.tags)
   }
 }
+
