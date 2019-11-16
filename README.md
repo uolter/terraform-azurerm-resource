@@ -25,8 +25,8 @@ module "integration_account" {
   api_version         = "2016-06-01"
   type                = "Microsoft.Logic/IntegrationAccounts"
   name                = "my-integration-account"
-  resource_group_name = "${azurerm_resource_group.integration_account.name}"
-  location            = "${azurerm_resource_group.integration_account.location}"
+  resource_group_name = azurerm_resource_group.integration_account.name
+  location            = azurerm_resource_group.integration_account.location
 
   sku {
     name = "Standard"
@@ -34,7 +34,7 @@ module "integration_account" {
 }
 
 output "integration_account_id" {
-  value = "${module.integration_account.id}"
+  value = module.integration_account.id
 }
 ```
 
@@ -51,8 +51,8 @@ module "api_management" {
   api_version         = "2018-01-01"
   type                = "Microsoft.ApiManagement/service"
   name                = "my-api-management-service"
-  resource_group_name = "${azurerm_resource_group.api_management.name}"
-  location            = "${azurerm_resource_group.api_management.location}"
+  resource_group_name = azurerm_resource_group.api_management.name
+  location            = azurerm_resource_group.api_management.location
 
   properties {
     publisherEmail = "name@example.com"
@@ -66,7 +66,7 @@ module "api_management" {
 }
 
 output "api_management_service_id" {
-  value = "${module.integration_account.id}"
+  value = module.integration_account.id
 }
 ```
 
